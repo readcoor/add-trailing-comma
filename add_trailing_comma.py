@@ -425,12 +425,12 @@ def _fix_src(contents_text, py35_plus, py36_plus):
                 add_comma=True,
                 remove_comma=True,
             )
-        elif token.offset in visitor.literals and token.src in START_BRACES:
-            _fix_brace(
-                tokens, _find_simple(i, tokens),
-                add_comma=True,
-                remove_comma=not _one_el_tuple(visitor.literals[token.offset]),
-            )
+        # elif token.offset in visitor.literals and token.src in START_BRACES:
+        #     _fix_brace(
+        #         tokens, _find_simple(i, tokens),
+        #         add_comma=True,
+        #         remove_comma=not _one_el_tuple(visitor.literals[token.offset]),
+        #     )
         elif token.offset in visitor.imports:
             # some imports do not have parens
             _fix_brace(
@@ -500,8 +500,8 @@ def main(argv=None):
     NOTE: Commented out to always exit 0 for purposes
     of interference with yapf configuration
     '''
-    # for filename in args.filenames:
-    #     ret |= fix_file(filename, args)
+    for filename in args.filenames:
+        ret |= fix_file(filename, args)
     return ret
 
 
